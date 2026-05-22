@@ -175,7 +175,7 @@ def create_lammps_input(
 
 
 def build_21steps_protocol(
-    temp_final_k: float = 300.0,  # K
+    temp_final_k: float = 293.15,  # K
     p_final_atm: float = 1.0,  # bar - metal
     time_prefactor: float = 1.0,
     seed: int = 42,
@@ -321,7 +321,7 @@ def build_21steps_protocol(
         ),
         lammps_stages.NPT(
             name="final_npt",
-            time_ps=time_prefactor * 1000,
+            time_ps=time_prefactor * 500,
             temp_k=temp_final_k,
             pressure_atm=p_final_atm,
             pressure_couple=pressure_couple,
