@@ -117,9 +117,9 @@ def prepare_21_simulation(
 )
 @click.option(
     "--temp-k",
-    default=300.0,
+    default=293.15,
     type=float,
-    help="Temperature in Kelvin (default: 300.0)",
+    help="Temperature in Kelvin (default: 293.15)",
 )
 @click.option(
     "--pressure-atm",

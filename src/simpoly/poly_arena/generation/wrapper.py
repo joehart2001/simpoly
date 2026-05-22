@@ -4,6 +4,7 @@ import dataclasses
 import logging
 import os
 import pathlib
+import platform
 import signal
 import subprocess
 import typing as ty
@@ -25,6 +26,17 @@ def get_emc_setup_path() -> str:
 
 
 def get_emc_path() -> str:
+    machine = platform.machine().lower()
+    executable_by_machine = {
+        "aarch64": "emc_linux_aarch64",
+        "arm64": "emc_linux_aarch64",
+        "amd64": "emc_linux_x86_64",
+        "x86_64": "emc_linux_x86_64",
+    }
+    executable = executable_by_machine.get(machine, "emc_linux_x86_64")
+    path = os.path.join(get_emc_root_dir(), "bin", executable)
+    if os.path.exists(path):
+        return path
     return os.path.join(get_emc_root_dir(), "bin", "emc_linux_x86_64")
 
 
